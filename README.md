@@ -20,7 +20,7 @@ Each script emphasizes real-world system management, logging, error handling, an
 - Handles invalid paths and failures safely  
 
 ### Output Format
-
+backup-YYYY-MM-DD_HHMMSS.tar.gz
 
 ### Concepts Demonstrated
 - `read` for user input  
@@ -35,3 +35,36 @@ Each script emphasizes real-world system management, logging, error handling, an
 ```bash
 chmod +x backup_tool.sh
 ./backup_tool.sh
+
+
+
+## Project 2 — System Health Monitor & Report Generator
+
+**Level:** Intermediate  
+**Objective:** Generate a professional system health report with resource monitoring and alerts.
+
+### Features
+- Generates system health report file  
+- Displays system identity and uptime  
+- Reports CPU load, memory usage, and disk usage  
+- Shows top 5 CPU-consuming processes  
+- Detects high resource usage (>80%)  
+- Logs warnings to `alerts.log`  
+
+### Output File
+health-report-YYYY-MM-DD.txt
+
+
+### Concepts Demonstrated
+- Command substitution `$(...)`  
+- Pipes `|`  
+- Text processing with `awk` and `cut`  
+- Process monitoring with `ps`  
+- Disk usage analysis with `df -h`  
+- Memory monitoring with `free -h`  
+- Conditional checks and functions  
+
+### Usage
+```bash
+chmod +x system_health_monitor.sh
+./system_health_monitor.sh
