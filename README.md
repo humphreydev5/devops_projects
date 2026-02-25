@@ -69,3 +69,88 @@ health-report-YYYY-MM-DD.txt
 chmod +x system_health_monitor.sh
 ./system_health_monitor.sh
 ```
+
+## Project 3 — User & Permission Provisioning Automation Tool
+
+**Level:** Advanced  
+**Objective:** Automate Linux user provisioning and permission management from a CSV file.
+
+### Features
+- Reads users from CSV file  
+- Creates groups if they do not exist  
+- Creates users with assigned shells  
+- Adds users to specified groups  
+- Creates project directories for each user  
+- Sets ownership and permissions automatically  
+- Generates provisioning summary  
+- Supports simulation and rollback modes  
+- Enforces root privilege execution  
+
+### CSV Format
+username,group,shell
+Alade,developers,/bin/bash
+Chika,designers,/bin/zsh
+
+
+### Concepts Demonstrated
+- CSV parsing with `while IFS=, read`  
+- `useradd`, `groupadd`, `usermod`  
+- Directory permission management  
+- Argument parsing  
+- `$EUID` validation for root access  
+- Arrays for tracking created resources  
+- DevOps-style rollback mechanism  
+
+### Usage
+
+**Normal execution**
+```bash
+sudo ./provision_users.sh users.csv
+```
+
+### Simulation mode
+```bash
+sudo ./provision_users.sh users.csv --dry-run
+```
+
+### Rollback mode
+```bash
+sudo ./provision_users.sh users.csv --rollback
+```
+
+
+## Skills Demonstrated Across Projects
+- Linux system administration  
+- Bash scripting and automation  
+- File compression and restoration  
+- System monitoring and reporting  
+- User and permission management  
+- Logging and error handling  
+- DevOps automation practices  
+
+---
+
+## Recommended Environment
+- Ubuntu / Debian Linux  
+- Bash shell  
+- Root privileges (for provisioning tool)  
+
+---
+
+## Learning Outcomes
+
+After completing these projects, you should be able to:
+
+- Automate system maintenance tasks  
+- Monitor Linux system health programmatically  
+- Manage users and permissions via scripts  
+- Build production-style Bash automation tools  
+- Apply DevOps thinking to Linux administration  
+
+---
+
+## Author
+
+Humphrey Ikhalea  
+DevOps/Software Engineer  
+Lagos, Nigeria
