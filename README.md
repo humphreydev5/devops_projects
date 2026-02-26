@@ -37,6 +37,8 @@ chmod +x backup_tool.sh
 ./backup_tool.sh
 ```
 
+<img width="881" height="657" alt="Screenshot 2026-02-26 at 14 00 34" src="https://github.com/user-attachments/assets/53688684-46a5-4ed6-b275-7df8f0cd2384" />
+
 
 ## Project 2 — System Health Monitor & Report Generator
 
