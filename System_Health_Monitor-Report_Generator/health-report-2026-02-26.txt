@@ -1,29 +1,61 @@
 SYSTEM HEALTH REPORT
-Generated on: Thu Feb 26 07:05:12 WAT 2026
+Generated on: Thu 26 Feb 2026 13:08:57 WAT
 ================================
 
 ===== SYSTEM INFORMATION =====
-Hostname: Humphreys-MacBook-Air.local
-Operating System: 
-Kernel Version: 21.6.0
-Uptime: 
+Hostname: Linux
+Operating System: GNU/Linux
+Kernel Version: 5.15.0-139-generic
+Uptime: up 1 hour, 6 minutes
 
 ===== CPU LOAD =====
-Load Average:
+Load Average: 0.29, 0.73, 0.48
 
 ===== MEMORY USAGE =====
+              total        used        free      shared  buff/cache   available
+Mem:          1.9Gi       1.3Gi        96Mi        14Mi       569Mi       495Mi
+Swap:         1.1Gi       106Mi       1.0Gi
 
 ===== DISK USAGE =====
-Filesystem       Size   Used  Avail Capacity iused    ifree %iused  Mounted on
-/dev/disk1s1s1  234Gi   14Gi  9.0Gi    62%  502388 94317840    1%   /
-devfs           188Ki  188Ki    0Bi   100%     650        0  100%   /dev
-/dev/disk1s4    234Gi  3.0Gi  9.0Gi    26%       4 94317840    0%   /System/Volumes/VM
-/dev/disk1s2    234Gi  313Mi  9.0Gi     4%    1469 94317840    0%   /System/Volumes/Preboot
-/dev/disk1s6    234Gi  4.1Mi  9.0Gi     1%      18 94317840    0%   /System/Volumes/Update
-/dev/disk1s5    234Gi  206Gi  9.0Gi    96% 3443806 94317840    4%   /System/Volumes/Data
-map auto_home     0Bi    0Bi    0Bi   100%       0        0  100%   /System/Volumes/Data/home
+Filesystem      Size  Used Avail Use% Mounted on
+udev            934M     0  934M   0% /dev
+tmpfs           197M  1.4M  196M   1% /run
+/dev/sda5        24G  9.9G   13G  44% /
+tmpfs           983M     0  983M   0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           983M     0  983M   0% /sys/fs/cgroup
+/dev/loop0      128K  128K     0 100% /snap/bare/5
+/dev/loop1       64M   64M     0 100% /snap/core20/1828
+/dev/loop2       74M   74M     0 100% /snap/core22/2292
+/dev/loop3       64M   64M     0 100% /snap/core20/2686
+/dev/loop5      347M  347M     0 100% /snap/gnome-3-38-2004/119
+/dev/loop4      350M  350M     0 100% /snap/gnome-3-38-2004/143
+/dev/loop6       92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop7      532M  532M     0 100% /snap/gnome-42-2204/247
+/dev/loop9       46M   46M     0 100% /snap/snap-store/638
+/dev/loop8       13M   13M     0 100% /snap/snap-store/1216
+/dev/loop10      49M   49M     0 100% /snap/snapd/25935
+/dev/loop11      50M   50M     0 100% /snap/snapd/18357
+/dev/sda1       511M  4.0K  511M   1% /boot/efi
+tmpfs           197M   28K  197M   1% /run/user/1000
 
-WARNING: Disk usage on devfs is 100%
-WARNING: Disk usage on /dev/disk1s5 is 96%
+WARNING: Disk usage on /dev/loop0 is 100%
+WARNING: Disk usage on /dev/loop1 is 100%
+WARNING: Disk usage on /dev/loop2 is 100%
+WARNING: Disk usage on /dev/loop3 is 100%
+WARNING: Disk usage on /dev/loop5 is 100%
+WARNING: Disk usage on /dev/loop4 is 100%
+WARNING: Disk usage on /dev/loop6 is 100%
+WARNING: Disk usage on /dev/loop7 is 100%
+WARNING: Disk usage on /dev/loop9 is 100%
+WARNING: Disk usage on /dev/loop8 is 100%
+WARNING: Disk usage on /dev/loop10 is 100%
+WARNING: Disk usage on /dev/loop11 is 100%
 ===== TOP 5 CPU-CONSUMING PROCESSES =====
+    PID COMMAND         %CPU
+   4468 firefox         16.2
+   4691 Isolated Web Co  7.3
+   4938 fwupd            4.7
+   1431 gnome-shell      1.6
+   1254 Xorg             0.6
 
