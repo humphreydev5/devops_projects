@@ -37,7 +37,7 @@ chmod +x backup_tool.sh
 ./backup_tool.sh
 ```
 
-### Project 2 Screenshot
+### Project 1 Screenshot
 #### 1. Backup Screen
 <img width="880" height="684" alt="Screenshot 2026-02-27 at 17 45 30" src="https://github.com/user-attachments/assets/443f0674-5226-4029-a2b9-4cd5cb821e50" />
 
