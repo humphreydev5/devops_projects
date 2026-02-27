@@ -37,7 +37,19 @@ chmod +x backup_tool.sh
 ./backup_tool.sh
 ```
 
-<img width="881" height="657" alt="Screenshot 2026-02-26 at 14 00 34" src="https://github.com/user-attachments/assets/53688684-46a5-4ed6-b275-7df8f0cd2384" />
+### Project 2 Screenshot
+#### 1. Backup Screen
+<img width="880" height="684" alt="Screenshot 2026-02-27 at 17 45 30" src="https://github.com/user-attachments/assets/443f0674-5226-4029-a2b9-4cd5cb821e50" />
+
+#### 2. Restore Screen
+<img width="846" height="682" alt="Screenshot 2026-02-27 at 17 47 34" src="https://github.com/user-attachments/assets/d5ce8f1e-5210-4584-9836-d0e49261a575" />
+
+#### 3. Exiting Screen
+<img width="856" height="708" alt="Screenshot 2026-02-27 at 17 48 13" src="https://github.com/user-attachments/assets/01806803-f90d-42b2-b8de-9da72f65d593" />
+
+
+
+
 
 
 ## Project 2 — System Health Monitor & Report Generator
@@ -71,6 +83,9 @@ health-report-YYYY-MM-DD.txt
 chmod +x system_health_monitor.sh
 ./system_health_monitor.sh
 ```
+
+<img width="881" height="657" alt="Screenshot 2026-02-26 at 14 00 34" src="https://github.com/user-attachments/assets/53688684-46a5-4ed6-b275-7df8f0cd2384" />
+
 
 ## Project 3 — User & Permission Provisioning Automation Tool
 
