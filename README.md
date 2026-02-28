@@ -90,7 +90,8 @@ chmod +x system_health_monitor.sh
 
 #### 2. Report Screen 1
 <img width="889" height="724" alt="Screenshot 2026-02-26 at 14 02 45" src="https://github.com/user-attachments/assets/d4d80f23-d5db-49e9-a964-5085008706c5" />
-#### 2. Report Screen 2
+
+#### 3. Report Screen 2
 <img width="890" height="678" alt="Screenshot 2026-02-26 at 14 03 31" src="https://github.com/user-attachments/assets/cff0116b-a57b-46c6-86b7-4ff684349c36" />
 
 
