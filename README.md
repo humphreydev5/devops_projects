@@ -114,9 +114,9 @@ chmod +x system_health_monitor.sh
 - Enforces root privilege execution  
 
 ### CSV Format
-** username,group,shell **
-1. Alade,developers,/bin/bash
-2. Chika,designers,/bin/zsh
+**username, group, shell**
+1. Alade, developers, /bin/bash
+2. Chika, designers, /bin/zsh
 
 
 ### Concepts Demonstrated
