@@ -83,8 +83,17 @@ health-report-YYYY-MM-DD.txt
 chmod +x system_health_monitor.sh
 ./system_health_monitor.sh
 ```
+### Project 2 Screenshot
 
+#### 1. System Health Monitor & chmod Screen
 <img width="881" height="657" alt="Screenshot 2026-02-26 at 14 00 34" src="https://github.com/user-attachments/assets/53688684-46a5-4ed6-b275-7df8f0cd2384" />
+
+#### 2. Report Screen 1
+<img width="889" height="724" alt="Screenshot 2026-02-26 at 14 02 45" src="https://github.com/user-attachments/assets/d4d80f23-d5db-49e9-a964-5085008706c5" />
+#### 2. Report Screen 2
+<img width="890" height="678" alt="Screenshot 2026-02-26 at 14 03 31" src="https://github.com/user-attachments/assets/cff0116b-a57b-46c6-86b7-4ff684349c36" />
+
+
 
 
 ## Project 3 — User & Permission Provisioning Automation Tool
