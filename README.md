@@ -116,7 +116,7 @@ chmod +x system_health_monitor.sh
 ### How to Test this Project
 - Create a sample users.csv:
 
-#### Sample Users
+#### Sample Users:
 ```bash
 username,group,shell
 Precious,developers,/bin/bash
@@ -134,12 +134,12 @@ Run a Dry Run:
 sudo ./manage_users.sh --dry-run users.csv
 ```
 
-Execute for real: 
+Execute: 
 ```bash
 sudo ./manage_users.sh users.csv
 ```
 
-Verify permissions: 
+Verify: 
 ```bash
 ls -ld /opt/projects/precious
 ```
@@ -158,6 +158,20 @@ sudo ./manage_users.sh --rollback users.csv
 - `$EUID` validation for root access  
 - Arrays for tracking created resources  
 - DevOps-style rollback mechanism  
+
+### Project 3 Screenshot
+
+##### 1. Report Screen - Chmod and Run a Dry Run (Shot)
+<img width="821" height="683" alt="Screenshot 2026-03-02 at 11 35 04" src="https://github.com/user-attachments/assets/e56edaa0-0eaa-45d4-9ae2-c97e55eb5327" />
+
+##### 2. Report Screen - Chmod, Run a Dry Run, and Execute (Shot)
+<img width="824" height="671" alt="Screenshot 2026-03-02 at 11 36 29" src="https://github.com/user-attachments/assets/571e31df-1648-4096-a35a-9d31bc0c90b0" />
+
+##### 3. Report Screen - Verification (Shot)
+<img width="827" height="666" alt="Screenshot 2026-03-02 at 11 43 04" src="https://github.com/user-attachments/assets/2a64b50b-cdb4-4dab-92ca-7ab9de425e91" />
+
+##### 3. Report Screen - Test Rollback (Shot)
+<img width="825" height="671" alt="Screenshot 2026-03-02 at 11 45 12" src="https://github.com/user-attachments/assets/a60dcf3c-b4c3-467c-8757-148a63832a41" />
 
 
 
