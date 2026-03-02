@@ -113,10 +113,41 @@ chmod +x system_health_monitor.sh
 - Supports simulation and rollback modes  
 - Enforces root privilege execution  
 
-### CSV Format
-**username, group, shell**
-1. Alade, developers, /bin/bash
-2. Chika, designers, /bin/zsh
+### How to Test this Project
+- Create a sample users.csv:
+
+#### Sample Users
+```bash
+username,group,shell
+Precious,developers,/bin/bash
+Tony,testers,/bin/sh
+Uche,devops,/bin/sh
+```
+
+Make the script executable: 
+```bash
+chmod +x manage_users.sh
+```
+
+Run a Dry Run: 
+```bash
+sudo ./manage_users.sh --dry-run users.csv
+```
+
+Execute for real: 
+```bash
+sudo ./manage_users.sh users.csv
+```
+
+Verify permissions: 
+```bash
+ls -ld /opt/projects/precious
+```
+
+Test Rollback: 
+```bash
+sudo ./manage_users.sh --rollback users.csv
+```
 
 
 ### Concepts Demonstrated
@@ -128,22 +159,6 @@ chmod +x system_health_monitor.sh
 - Arrays for tracking created resources  
 - DevOps-style rollback mechanism  
 
-### Usage
-
-**Normal execution**
-```bash
-sudo ./provision_users.sh users.csv
-```
-
-### Simulation mode
-```bash
-sudo ./provision_users.sh users.csv --dry-run
-```
-
-### Rollback mode
-```bash
-sudo ./provision_users.sh users.csv --rollback
-```
 
 
 ## Skills Demonstrated Across Projects
