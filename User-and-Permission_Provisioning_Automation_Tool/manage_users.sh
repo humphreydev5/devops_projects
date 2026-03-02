@@ -1,156 +1,107 @@
 #!/bin/bash
 
-# ==============================
-# CONFIG
-# ==============================
-CSV_FILE="$1"
+# --- Configuration & Defaults ---
+CSV_FILE=""
 DRY_RUN=false
 ROLLBACK=false
+LOG_FILE="provision_summary.log"
+PROJECT_BASE="/opt/projects"
 
+# Tracking for Summary Report
 CREATED_USERS=()
-CREATED_GROUPS=()
-CREATED_DIRS=()
+SKIPPED_USERS=()
+ERRORS=()
 
-CREATED_COUNT=0
-SKIPPED_COUNT=0
-ERROR_COUNT=0
-
-# ==============================
-# ARGUMENT PARSING
-# ==============================
-for arg in "$@"; do
-    case $arg in
-        --dry-run) DRY_RUN=true ;;
-        --rollback) ROLLBACK=true ;;
-    esac
-done
-
-# ==============================
-# ROOT CHECK
-# ==============================
-if [ "$EUID" -ne 0 ]; then
-    echo "ERROR: This script must be run as root."
-    exit 1
+# --- Root Validation ---
+if [[ $EUID -ne 0 ]]; then
+   echo "Error: This script must be run as root." 
+   exit 1
 fi
 
-# ==============================
-# HELPER FUNCTIONS
-# ==============================
-run_cmd() {
-    if $DRY_RUN; then
-        echo "[DRY-RUN] $*"
-    else
-        eval "$@"
-        return $?
-    fi
-}
-
-group_exists() {
-    getent group "$1" > /dev/null
-}
-
-user_exists() {
-    id "$1" &>/dev/null
-}
-
-# ==============================
-# ROLLBACK FUNCTION
-# ==============================
-rollback() {
-    echo "Starting rollback..."
-
-    for user in "${CREATED_USERS[@]}"; do
-        echo "Removing user: $user"
-        run_cmd userdel -r "$user"
-    done
-
-    for grp in "${CREATED_GROUPS[@]}"; do
-        echo "Removing group: $grp"
-        run_cmd groupdel "$grp"
-    done
-
-    for dir in "${CREATED_DIRS[@]}"; do
-        echo "Removing directory: $dir"
-        run_cmd rm -rf "$dir"
-    done
-
-    echo "Rollback completed."
+# --- Helper Functions ---
+show_help() {
+    echo "Usage: $0 [OPTIONS] <csv_file>"
+    echo "Options:"
+    echo "  --dry-run   Show what would happen without making changes."
+    echo "  --rollback  Remove users, groups, and directories defined in the CSV."
     exit 0
 }
 
-if $ROLLBACK; then
-    rollback
+# --- Argument Parsing ---
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --dry-run) DRY_RUN=true; shift ;;
+        --rollback) ROLLBACK=true; shift ;;
+        -h|--help) show_help ;;
+        *) CSV_FILE="$1"; shift ;;
+    esac
+done
+
+if [[ -z "$CSV_FILE" || ! -f "$CSV_FILE" ]]; then
+    echo "Error: CSV file not found."
+    show_help
 fi
 
-# ==============================
-# VALIDATE CSV
-# ==============================
-if [ -z "$CSV_FILE" ] || [ ! -f "$CSV_FILE" ]; then
-    echo "Usage: $0 users.csv [--dry-run] [--rollback]"
-    exit 1
-fi
+# --- Core Logic ---
+process_provisioning() {
+    # CSV Format: username,group,shell
+    while IFS=',' read -r username group shell || [ -n "$username" ]; do
+        # Skip header or empty lines
+        [[ "$username" == "username" || -z "$username" ]] && continue
 
-# ==============================
-# PROCESS CSV
-# ==============================
-while IFS=, read -r username group shell; do
-
-    echo "Processing user: $username"
-
-    # ----- CREATE GROUP -----
-    if group_exists "$group"; then
-        echo "Group exists: $group"
-    else
-        if run_cmd groupadd "$group"; then
-            CREATED_GROUPS+=("$group")
-        else
-            echo "Error creating group $group"
-            ((ERROR_COUNT++))
+        if $ROLLBACK; then
+            echo "Rolling back: $username"
+            if $DRY_RUN; then
+                echo "[DRY-RUN] Would remove user $username and directory $PROJECT_BASE/$username"
+            else
+                userdel -r "$username" 2>/dev/null
+                rm -rf "$PROJECT_BASE/$username"
+                echo "Removed $username"
+            fi
             continue
         fi
-    fi
 
-    # ----- CREATE USER -----
-    if user_exists "$username"; then
-        echo "User exists: $username (skipped)"
-        ((SKIPPED_COUNT++))
-    else
-        if run_cmd useradd -m -s "$shell" -g "$group" "$username"; then
+        # Provisioning Logic
+        if id "$username" &>/dev/null; then
+            SKIPPED_USERS+=("$username (Exists)")
+            continue
+        fi
+
+        if $DRY_RUN; then
+            echo "[DRY-RUN] Would create group $group, user $username (shell: $shell), and directory $PROJECT_BASE/$username"
+            continue
+        fi
+
+        # 1. Create Group
+        getent group "$group" >/dev/null || groupadd "$group"
+
+        # 2. Create User
+        if useradd -m -g "$group" -s "$shell" "$username" 2>/dev/null; then
+            # 3. Create Project Directory
+            mkdir -p "$PROJECT_BASE/$username"
+            
+            # 4. Set Permissions (Owner:User, Group:Group, Mode:770)
+            chown "$username:$group" "$PROJECT_BASE/$username"
+            chmod 770 "$PROJECT_BASE/$username"
+            
             CREATED_USERS+=("$username")
-            ((CREATED_COUNT++))
         else
-            echo "Error creating user $username"
-            ((ERROR_COUNT++))
-            continue
+            ERRORS+=("$username (Failed to create)")
         fi
-    fi
 
-    # ----- CREATE PROJECT DIRECTORY -----
-    PROJECT_DIR="/opt/projects/$username"
+    done < "$CSV_FILE"
+}
 
-    if [ -d "$PROJECT_DIR" ]; then
-        echo "Directory exists: $PROJECT_DIR"
-    else
-        if run_cmd mkdir -p "$PROJECT_DIR"; then
-            CREATED_DIRS+=("$PROJECT_DIR")
-        else
-            echo "Error creating directory for $username"
-            ((ERROR_COUNT++))
-            continue
-        fi
-    fi
+# Run execution
+process_provisioning
 
-    run_cmd chown "$username:$group" "$PROJECT_DIR"
-    run_cmd chmod 770 "$PROJECT_DIR"
+# --- Summary Report ---
+{
+    echo "--- Provisioning Summary ($(date)) ---"
+    echo "Created: ${CREATED_USERS[*]:-None}"
+    echo "Skipped: ${SKIPPED_USERS[*]:-None}"
+    echo "Errors:  ${ERRORS[*]:-None}"
+    echo "--------------------------------------"
+} | tee -a "$LOG_FILE"
 
-done < "$CSV_FILE"
-
-# ==============================
-# SUMMARY REPORT
-# ==============================
-echo ""
-echo "========= PROVISIONING SUMMARY ========="
-echo "Users created : $CREATED_COUNT"
-echo "Users skipped : $SKIPPED_COUNT"
-echo "Errors        : $ERROR_COUNT"
-echo "========================================"
+echo "Report saved to $LOG_FILE"

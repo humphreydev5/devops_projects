@@ -1,0 +1,15 @@
+2026-02-27 17:20:09 | Source: /home/techie/Downloads | Destination: ./documents | Status: FAILED (Invalid destination)
+2026-02-27 17:20:59 | Source: /home/techie/Downloads | Destination: /home/techie/Documents | Status: SUCCESS
+2026-02-27 17:27:55 | Source: /home/techie/Documents/backup-2026-02-27_172059.tar.gz | Destination: /home/techie/Documents/Restore_Backup_File | Status: RESTORE SUCCESS
+2026-02-27 17:36:08 | Source: Logs | Destination: e | Status: FAILED (Invalid source)
+2026-02-27 17:37:16 | Source: Logs | Destination: Backups | Status: FAILED (Invalid source)
+2026-02-27 17:38:10 | Source: Logs | Destination: /Backup | Status: FAILED (Invalid source)
+2026-02-27 17:38:35 | Source: Logs | Destination: /Backups | Status: FAILED (Invalid source)
+2026-02-27 17:39:38 | Source: Logs | Destination: 1 | Status: FAILED (Invalid source)
+2026-02-27 17:40:09 | Source: Logs | Destination: /home/techie/Downloads/Backups | Status: FAILED (Invalid source)
+2026-02-27 17:41:15 | Source: Logs | Destination: /home | Status: FAILED (Invalid source)
+2026-02-27 17:42:22 | Source: Logs | Destination: /home/techie/Downloads/Backups | Status: FAILED (Invalid source)
+2026-02-27 17:43:17 | Source: Logs | Destination: /home/techie/Documents | Status: FAILED (Invalid source)
+2026-02-27 17:44:13 | Source: ./Logs | Destination: /home/techie/Downloads/Backups | Status: FAILED (Invalid source)
+2026-02-27 17:44:54 | Source: /home/techie/Downloads/Logs | Destination: /home/techie/Downloads/Backups | Status: SUCCESS
+2026-02-27 17:47:19 | Source: /home/techie/Downloads/Backups/backup-2026-02-27_174454.tar.gz | Destination: /home/techie/Downloads/Restore | Status: RESTORE SUCCESS
