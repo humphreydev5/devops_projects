@@ -1,0 +1,4 @@
+username,group,shell
+Precious,developers,/bin/bash
+Tony,testers,/bin/sh
+Uche,devops,/bin/sh
